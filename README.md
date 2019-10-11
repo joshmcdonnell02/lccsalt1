@@ -1,1 +1,3 @@
-# lccsalt1
+Django experiment
+=================
+
