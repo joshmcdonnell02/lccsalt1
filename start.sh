@@ -1,3 +1,2 @@
 cd mysite
-python manage.py runserver $PORT
-
+python3 ~/lccs/manage.py runserver $PORT
