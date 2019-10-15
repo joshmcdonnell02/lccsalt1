@@ -1,3 +1,1 @@
-Django experiment
-=================
-
+Interactive website using Django and sql
