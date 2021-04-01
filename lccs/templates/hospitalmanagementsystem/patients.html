@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <title>Doctors</title>
+    <link rel="icon" type="jpg" class="circle" href="https://www.sccpre.cat/mypng/full/523-5233706_stethoscope-symbol.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Import Google Icon Font-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Import materialize.css-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
+    />
+  </head>
+  <body>
+    
+    <nav>
+      <div class="nav-wrapper" style="background-color: #ad0504;">
+        <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right">
+          <li><a href="{% url "index" %}">Home</a></li>
+          <li><a href="{% url "patients" %}">Patients</a></li>
+          <li><a href="{% url "doctors" %}">Doctors</a></li>
+          <li><a href="{% url "rooms" %}">Rooms</a></li>
+          <li><a href="{% url "userinfo" %}">{{ user.get_username }}</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="row">
+      <div class="container">
+        <ul id="slide-out" class="side-nav">
+
+          <li><div class="user-view">
+              <div class="background">
+                <img src="http://www.raymundoconnor.com/wp/wp-content/uploads/2018/10/seamless-pattern.jpg">
+              </div>
+              <a href="{% url "userinfo" %}"><img class="circle" align="middle" style="width:150px;height:132px;" src="https://www.rezoomo.com/contentFiles/companies/434/companyImgLogo.jpg"></a>
+              <a href="{% url "userinfo" %}"><span class="white-text name">{{ user.get_username }}</span></a>
+              <a href="{% url "userinfo" %}"><span class="white-text email">{{ user.email }}</span></a>
+            </div>
+          </li>
+          
+          <li>
+            <a href="{% url "index" %}">Home</a>
+          </li>
+          <li>
+            <a href="{% url "patients" %}">Patients</a>
+          </li>
+          <li>
+            <a href="{% url "doctors" %}">Doctors</a>
+          </li>
+          <li>
+            <a href="{% url "rooms" %}">Rooms</a>
+          </li>
+          <li>
+            <a href="/admin/hospitalmanagementsystem/">Administration</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+<div class="row">
+    
+  <table class="striped">
+    
+    <thead>
+      <tr>
+          <th>UID</th>
+          <th>Name</th>
+          <th>DOB</th>
+          <th>Date Admitted</th>
+          <th>Doctor</th>
+          <th>Blood Type</th>
+          <th>Discharged</th>
+      </tr>
+    </thead>
+    {% for x in patientslist %}
+<tr>
+<td>{{ x.UID }}</td>
+<td>{{ x.name }}</td>
+<td>{{ x.dob }}</td>
+<td>{{ x.dateAdmitted }}</td>
+<td>{{ x.doctor.name }}</td>
+<td>{{ x.bloodType }}</td>
+<td>{{ x.discharged }}</td>
+</tr>
+{% endfor %}
+</table>
+  
+    </div>
+    
+    <a class="waves-effect waves-light btn" href="/admin/hospitalmanagementsystem/patient/">Edit, Add or Delete</a>
+
+    <!--Import jQuery Library-->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+    ></script>
+    <!--Import materialize.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script type="text/javascript">
+      $(".button-collapse").sideNav();
+    </script>
+  </body>
+</html>

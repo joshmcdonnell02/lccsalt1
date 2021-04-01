@@ -1,49 +1,137 @@
 <html>
-<head>
+  <head>
+    <title>Hospital Sign In</title>
+    <link rel="icon" type="jpg" class="circle" href="https://www.sccpre.cat/mypng/full/523-5233706_stethoscope-symbol.png">
+    
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            
+  </head>
 
-</head>
+  <body>
+  <br>
+    <br>
+    <br>
 
-<body>
-{% block content %}
+           <style>
+body {
+ background-image: url("https://assetsamerica.com/wp-content/uploads/Lines-of-Business/Hospital-Building/POSTED/Hospital-Building-Feature-B-UPMC-Childrens-South-Fayette-Exterior-3-1900x721.jpg");
+ background-color: #cccccc;
+  height: 500px; /* You must set a specified height */
+  background-position: center ; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  scroll-behavior: smooth;
+}
+             
+p {
+  color: #ad0504;
+  font-family: Ariana;
+  
+}
 
-{% if form.errors %}
-  <p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+form{
+  position: center;
+               
+}
+</style>
+    
+    <!--<img class= align="middle" style="width:150px;height:132px;" src="https://www.rezoomo.com/contentFiles/companies/434/companyImgLogo.jpg">-->
 
-{% if next %}
-  {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-  {% else %}
+    <div style="width: 32%; margin-left: 35%;">
+    
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      
+      
+      <div class="mdc-text-field username">
+        <input
+          type="text"
+          class="mdc-text-field__input"
+          id="username-input"
+          name="username"
+        />
+        <label class="mdc-floating-label" for="username-input">Username</label>
+        <div class="mdc-line-ripple"></div>
+      </div>
+      <div class="mdc-text-field password">
+        <input
+          type="password"
+          class="mdc-text-field__input"
+          id="password-input"
+          name="password"
+        />
+        <label class="mdc-floating-label" for="password-input">Password</label>
+        <div class="mdc-line-ripple"></div>
+      </div>
+
+      <div style="text-align: center;">
+        <button class="btn waves-effect waves-light" type="submit" name="action" value="login">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+     
+      <input type="hidden" name="next" value="{{ next }}" />
+      <p><i>
+        *Default Username/Password = 'admin'
+        </i>
+      </p>
+      
+      {% block content %} {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %} {% if next %} {% if user.is_authenticated %}
+    <p>
+      Your account doesn't have access to this page. To proceed, please login
+      with an account that has access.
+    </p>
+    {% else %}
     <p>Please login to see this page.</p>
-  {% endif %}
-{% endif %}
+    {% endif %} {% endif %}
+    </form>
+      
+        </div>
+    
 
+    <style>
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
 
-<table>
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+  
+</style>
+    
 
-<tr>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
-</tr>
-
-<tr>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
-
-
-{% endblock %}
-</body>
+    {% endblock %}
+  </body>
 </html>
